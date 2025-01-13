@@ -1,17 +1,27 @@
 import React from 'react';
-import logo from '../assets/coffee.png'
+import logo from '../assets/coffee.png';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate()
   return (
-    <div>
-      <img src={logo} alt="" width={85}/>
+    <div className="navbar">
+      <img src={logo} alt="" width={85} />
       <ul>
-        <li>Home</li>
-        <li>Products</li>
-        <li>About</li>
-        <li>Contact</li>
+        <NavLink to='/'>
+          <li>Home</li>
+        </NavLink>
+        <NavLink to='/products'>
+          <li>Products</li>
+        </NavLink>
+        <NavLink to='/about'>
+          <li>About</li>
+        </NavLink>
+        <NavLink to='/contact'>
+          <li>Contact</li>
+        </NavLink>
       </ul>
-      <button>Get started</button>
+      <button onClick={()=> navigate('/', {replace: true})}>Get started</button>
     </div>
   );
 };
