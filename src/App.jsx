@@ -14,6 +14,7 @@ import {
 } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import JobsLayout from './layouts/JobsLayout';
+import JobDetails from './components/JobDetails';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -28,7 +29,8 @@ const App = () => {
         </Route>
         <Route path="*" element={<NotFound />} />
         <Route path="jobs" element={<JobsLayout />}>
-          <Route index element={<Jobs />} loader={jobsLoader}/>
+          <Route index element={<Jobs />} loader={jobsLoader} />
+          <Route path=":id" element={<JobDetails />} />
         </Route>
       </Route>
     )
