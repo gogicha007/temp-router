@@ -5,6 +5,7 @@ import RootLayout from './layouts/RootLayout';
 import ContactLayout from './layouts/ContactLayout';
 import ContactInfo from './components/ContactInfo';
 import ContactForm from './components/ContactForm';
+import Error from './components/Error';
 import Jobs, { jobsLoader } from './pages/Jobs';
 import {
   Route,
@@ -14,7 +15,7 @@ import {
 } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import JobsLayout from './layouts/JobsLayout';
-import JobDetails from './components/JobDetails';
+import JobDetails, { jobDetailsLoader } from './components/JobDetails';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -28,9 +29,14 @@ const App = () => {
           <Route path="form" element={<ContactForm />} />
         </Route>
         <Route path="*" element={<NotFound />} />
-        <Route path="jobs" element={<JobsLayout />}>
+        <Route path="jobs" element={<JobsLayout />} errorElement={<Error />}>
           <Route index element={<Jobs />} loader={jobsLoader} />
-          <Route path=":id" element={<JobDetails />} />
+          <Route
+            path=":id"
+            element={<JobDetails />}
+            loader={jobDetailsLoader}
+            errorElement={<Error />}
+          />
         </Route>
       </Route>
     )
